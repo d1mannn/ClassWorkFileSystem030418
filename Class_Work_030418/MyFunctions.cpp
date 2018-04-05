@@ -2,7 +2,7 @@
 
 int TaskNumb()
 {
-	printf("¬ведите номер задани€ - ");
+	printf("¬ведите номер задани€. ƒл€ выхода введите 0\n---->  ");
 	int task;
 	scanf_s("%d", &task);
 	return task;

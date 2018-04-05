@@ -301,53 +301,177 @@ void main()
 					exit(EXIT_FAILURE);
 				}
 			} break;
-
+//
 			case 6:
 			{
-				/*1.	Дан типизированный файл, элементами которого являются числа.Напечатать
-					a.n - й элемент
-					b.последний элемент*/
+//				/*1.	Дан типизированный файл, элементами которого являются числа.Напечатать
+//					a.n - й элемент
+//					b.последний элемент*/
+//
 				FILE *file;
-				if ((file = fopen("Массив Чисел.txt", "r")) == NULL)
+				if ((file = fopen("Case6.txt", "w")) != NULL);
 				{
-					printf("Ошибка при открытии\n");
-					exit(EXIT_FAILURE);
+					for (int i = 0; i < 10; i++)
+					{
+						fprintf_s(file, "%d\n", i);
+					}
+					if (fclose(file) == NULL)
+					{
+						printf("Поток был закрыт\n");
+					}
+					else
+					{
+						printf("ERROR\n");
+						exit(EXIT_FAILURE);
+					}
+				}
+				int n;
+				do
+				{
+					printf("Введите числа от 1 до 10 --> ");
+					scanf_s("%d", &n);
+				} while (n < 1 || n > 10);
+//				/*if ((file = fopen("Case6.txt", "r")) != NULL)
+//				{	
+//					int count = 0;
+//					int codeN = fgetc(file);
+//					int ch = fscanf_s(file, "%d");
+//					while (!feof(file))
+//					{	
+//						count++;
+//						if (count == n)
+//						{
+//							printf("%d - %c\n", ch, ch);
+//						}
+//						ch = fgetc(file);
+//					}
+//					if (fclose(file) == NULL)
+//					{
+//						printf("Поток был закрыт\n");
+//					}
+//					else
+//					{
+//						printf("ERROR\n");
+//						exit(EXIT_FAILURE);
+//					}
+//				}*/
+//
+////				FILE *file;
+////				if ((file = fopen("Массив Чисел.txt", "r")) == NULL)
+////				{
+////					printf("Ошибка при открытии\n");
+////					exit(EXIT_FAILURE);
+////				}
+////				else
+////				{
+////					printf("Всё кул\n");
+////					printf("введите число - ");
+////					int numb;
+////					scanf_s("%d", &numb);
+////
+////					int ch = fscanf(file, "%s");
+////					
+////					int count = 0;
+////					while (fgetc(file) != EOF)
+////					{
+////					/*	count++;
+////						if (count == numb)
+////						{
+////							printf("%d - %c", ch, ch);
+////							break;
+////						}
+////*/
+////						printf("%d - %c\n", ch, ch);
+////						ch = fgetc(file);
+////					}
+////
+//					//printf("%d\n", count);
+//
+//					//int codeError = getc(fp);
+//					////while (codeError != EOF)
+//					//while (!feof(fp) == 1) // если не равен 1, т.е. равен 0 т.е. не достиг конца файла будем считывать 
+//					//{
+//					//	printf(" - %c\n", codeError);
+//					//	codeError = getc(fp); // функция getc() сама делает fp++;
+//					//}
+//				}
+//
+			} break;
+
+			case 7:
+			{
+				//2.	Изменить все элементы существующего типизированного файла, 
+				//в котором записаны числа.Новые значения вводятся с клавиатуры.
+				FILE *file;
+				int n, count = 0;
+				if ((file = fopen("Case7.txt", "w")) != NULL)
+				{	
+					printf("Файл создан\n");
+					do
+					{	
+						count++;
+						printf("Введите любое число - ");
+						scanf_s("%d", &n);
+						fprintf(file, "%d\n", n);
+					} while (count != 5);
+					fclose(file);
 				}
 				else
 				{
-					printf("Всё кул\n");
-					printf("введите число - ");
-					int numb;
-					scanf_s("%d", &numb);
-
-					int ch = fscanf(file, "%s");
-					
-					int count = 0;
-					while (fgetc(file) != EOF)
-					{
-					/*	count++;
-						if (count == numb)
-						{
-							printf("%d - %c", ch, ch);
-							break;
-						}
-*/
-						printf("%d - %c\n", ch, ch);
-						ch = fgetc(file);
-					}
-
-					//printf("%d\n", count);
-
-					//int codeError = getc(fp);
-					////while (codeError != EOF)
-					//while (!feof(fp) == 1) // если не равен 1, т.е. равен 0 т.е. не достиг конца файла будем считывать 
-					//{
-					//	printf(" - %c\n", codeError);
-					//	codeError = getc(fp); // функция getc() сама делает fp++;
-					//}
+					printf("ERROR\n");
+					exit(EXIT_FAILURE);
 				}
-
 			} break;
+
+			case 8:
+			{
+				/*3.	Имеется типизированный файл с числами.Поменять местами :
+				a.первое и третье число
+					b.второе и последнее число
+					c.n1 - е и n2 - е число*/
+				FILE *file;
+				int n1 = 0, n3 = 0, count = 0;
+				printf("%d and %d\n", n1, n3);
+				if ((file = fopen("Case6.txt", "r")) != NULL)
+				{	
+					//rewind(file);
+					do
+					{
+						count++;
+						if (count == 1)
+							fscanf(file, "%d", &n1);
+						if (count == 3)
+							fscanf(file, "%d", &n3);
+						getc(file);
+					} while (getc(file) != EOF);
+					fclose(file);
+					printf("%d and %d\n", n1, n3);
+					fclose(file);
+				}
+				else
+				{
+					printf("ERROR\n");
+					exit(EXIT_FAILURE);
+				}
+				if ((file = fopen("Case6.txt", "a")) != NULL)
+				{	
+					//rewind(file);
+					fseek(file, 0, SEEK_END);
+					rewind(file);
+					count = 0;
+					do
+					{
+						count++;
+						if (count == 1)
+							fprintf(file, "%d\n", n3);
+						if (count == 3)
+							fprintf(file, "%d\n", n1);
+						//getc(file);
+					} while (getc(file) != EOF);
+					fclose(file);
+				}
+			} break;
+			system("pause");
 		}
-	} while (task > 0);
+	} while (task != 0);
 }
