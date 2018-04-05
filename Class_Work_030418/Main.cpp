@@ -233,7 +233,7 @@ void main()
 				}
 				if (fclose(file) == 0)
 				{
-					printf("Поток был закрыт\n");
+					printf("Поток был закрыт\n\n");
 				}
 				else
 				{
